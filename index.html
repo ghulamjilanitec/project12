@@ -7,471 +7,226 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- CSS FILE LINK -->
+ <link rel="stylesheet" href="./style.css">
+<style>
+
+</style>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HelpHub AI — Community Support Network</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --primary: #0D9488;
   --primary-hover: #0F766E;
-  --primary-light: rgba(13,148,136,0.1);
-  --dark: #1F2937;
-  --dark-deep: #111827;
-  --bg: #F5F5F0;
-  --bg-light: #FAFAF8;
-  --card: #FFFFFF;
-  --text-primary: #111827;
-  --text-secondary: #6B7280;
-  --text-muted: #9CA3AF;
-  --border: #E5E7EB;
-  --tag-bg: #F3F4F6;
-  --tag-text: #374151;
-  --success: #10B981;
-  --warning: #F59E0B;
-  --danger: #EF4444;
-  --danger-bg: #FEF2F2;
-  --info-bg: #ECFDF5;
+  --bg-soft: #F1F5F2; /* Image wala light background */
+  --text-dark: #1F2937;
+  --text-muted: #6B7280;
+  --card-shadow: 0 10px 30px rgba(0,0,0,0.04);
 }
-
-* { box-sizing: border-box; }
 
 body {
-  font-family: 'DM Sans', -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text-primary);
-  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  background-color: #fff;
+  color: var(--text-dark);
 }
 
-h1,h2,h3,h4,h5,h6,.fw-bold,.fw-semibold {
+h1, h2, h3, h4, .fw-bold {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 /* ===== PAGE ROUTING ===== */
-.page { display: none; min-height: 100vh; }
+.page { display: none; }
 .page:target { display: block; }
-#page-home { display: block; }
+#page-home { display: block; background: linear-gradient(180deg, #E8F0EE 0%, #FFFFFF 100%); min-height: 100vh; }
 .page:target ~ #page-home { display: none; }
 
-/* When any other page is targeted, hide home */
-#page-login:target ~ #page-home,
-#page-explore:target ~ #page-home,
-#page-create:target ~ #page-home,
-#page-ai:target ~ #page-home,
-#page-detail:target ~ #page-home,
-#page-notifications:target ~ #page-home,
-#page-messages:target ~ #page-home,
-#page-leaderboard:target ~ #page-home,
-#page-profile:target ~ #page-home { display: none; }
-
-/* ===== NAV ===== */
-.navbar-helphub {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
-  height: 64px;
-  background: rgba(245,245,240,0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(229,231,235,0.6);
-  display: flex; align-items: center;
+/* ===== NAVBAR ===== */
+.navbar-custom {
+  padding: 15px 0;
+  background: transparent;
 }
-
-.nav-logo {
-  width: 38px; height: 38px;
-  background: var(--primary);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-weight: 800; font-size: 1rem;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  text-decoration: none;
-  flex-shrink: 0;
+.nav-logo-box {
+  width: 35px; height: 35px; background: var(--primary);
+  border-radius: 8px; color: white; display: flex;
+  align-items: center; justify-content: center; font-weight: 800;
 }
-
-.nav-brand {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700; font-size: 1rem; color: var(--text-primary);
-  text-decoration: none; margin-left: 10px;
-}
-
 .nav-link-custom {
-  padding: 6px 14px; border-radius: 9999px;
-  font-size: 0.875rem; font-weight: 500;
-  color: var(--text-secondary); text-decoration: none;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.9rem;
+  padding: 8px 15px; transition: 0.3s;
+}
+.nav-link-custom:hover, .nav-link-custom.active { color: var(--primary); }
+.btn-join {
+  background: var(--primary); color: white; border-radius: 50px;
+  padding: 8px 24px; font-weight: 600; text-decoration: none; font-size: 0.9rem;
 }
 
-.nav-link-custom:hover { color: var(--text-primary); background: rgba(0,0,0,0.05); }
-.nav-link-custom.active { color: var(--primary); background: var(--primary-light); font-weight: 600; }
-
-.btn-nav {
-  background: var(--primary); color: #fff;
-  padding: 8px 20px; border-radius: 9999px;
-  font-size: 0.875rem; font-weight: 600;
-  text-decoration: none; border: none;
-  transition: all 0.2s ease; white-space: nowrap;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+/* ===== HERO SECTION ===== */
+.hero-title {
+  font-size: 4.5rem; font-weight: 800; line-height: 1; letter-spacing: -2px; margin-bottom: 25px;
 }
-.btn-nav:hover { background: var(--primary-hover); color: #fff; transform: translateY(-1px); }
+.hero-desc { color: var(--text-muted); font-size: 1.05rem; max-width: 500px; line-height: 1.6; }
 
-/* ===== BUTTONS ===== */
-.btn-primary-custom {
-  background: var(--primary); color: #fff;
-  padding: 12px 28px; border-radius: 9999px;
-  font-size: 0.9375rem; font-weight: 600;
-  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-  transition: all 0.2s ease; border: none; cursor: pointer;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+/* Stat Cards */
+.stat-card-row { margin-top: 40px; }
+.stat-card {
+  background: white; border-radius: 15px; padding: 25px;
+  box-shadow: var(--card-shadow); border: 1px solid rgba(0,0,0,0.03);
+  height: 100%;
 }
-.btn-primary-custom:hover { background: var(--primary-hover); color: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,148,136,0.3); }
+.stat-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 1px; margin-bottom: 10px; display: block; }
+.stat-value { font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; }
+.stat-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
 
-.btn-secondary-custom {
-  background: #fff; color: var(--text-primary);
-  padding: 12px 28px; border-radius: 9999px;
-  font-size: 0.9375rem; font-weight: 600;
-  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-  transition: all 0.2s ease; border: 1.5px solid var(--border); cursor: pointer;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-.btn-secondary-custom:hover { background: var(--bg); color: var(--text-primary); transform: translateY(-1px); }
-
-.btn-ghost-custom {
-  background: transparent; color: var(--text-secondary);
-  padding: 9px 18px; border-radius: 9999px;
-  font-size: 0.875rem; font-weight: 500;
-  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
-  transition: all 0.2s ease; border: none; cursor: pointer;
-}
-.btn-ghost-custom:hover { color: var(--text-primary); background: rgba(0,0,0,0.05); }
-
-.btn-full { width: 100%; justify-content: center; }
-
-/* ===== HERO BANNER ===== */
-.hero-banner {
-  background: var(--dark);
-  border-radius: 24px;
-  padding: 56px 48px;
-  color: #fff;
+/* Dark Ecosystem Card */
+.eco-card {
+  background: #0F1F1C; border-radius: 30px; padding: 40px; color: white;
   position: relative; overflow: hidden;
 }
-.hero-banner::before {
-  content: '';
-  position: absolute; top: -60px; right: -60px;
-  width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
-  border-radius: 50%;
+.eco-circle {
+  width: 60px; height: 60px; background: #EAB308; border-radius: 50%;
+  position: absolute; top: 30px; right: 30px; box-shadow: 0 0 30px rgba(234,179,8,0.3);
 }
-.hero-banner::after {
-  content: '';
-  position: absolute; bottom: -40px; left: 20%;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
-  border-radius: 50%;
+.eco-feature {
+  background: rgba(255,255,255,0.9); border-radius: 15px; padding: 20px;
+  color: #1F2937; margin-top: 20px;
 }
+.eco-feature h5 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.eco-feature p { font-size: 0.85rem; color: #4B5563; margin: 0; }
 
-.overline {
-  font-size: 0.75rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--primary);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+/* ===== SECTION TITLES ===== */
+.section-tag { font-size: 0.7rem; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-bottom: 10px; display: block; }
+.section-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; }
+
+/* ===== CORE FLOW CARDS ===== */
+.flow-card {
+  background: #FCFDFB; border: 1px solid #F0F2EE; border-radius: 20px; padding: 30px; transition: 0.3s;
 }
-.overline-white { color: rgba(13,148,136,0.9); }
+.flow-card:hover { transform: translateY(-5px); box-shadow: var(--card-shadow); }
+.flow-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; }
+.flow-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-/* ===== CARDS ===== */
-.card-custom {
-  background: var(--card);
-  border-radius: 16px; padding: 24px;
-  border: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-  transition: all 0.2s ease;
+/* ===== REQUEST CARDS ===== */
+.req-card {
+  background: white; border-radius: 20px; padding: 25px; border: 1px solid #F0F2EE;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
 }
-.card-custom:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.06); }
-
-.card-lift:hover { transform: translateY(-3px); }
-
-/* ===== TAGS / PILLS ===== */
-.tag {
-  padding: 5px 14px; border-radius: 9999px;
-  font-size: 0.8125rem; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+.tag-pill {
+  font-size: 0.75rem; padding: 4px 12px; border-radius: 50px; font-weight: 600;
 }
-.tag-category { background: var(--tag-bg); color: var(--tag-text); }
-.tag-primary { background: var(--primary-light); color: var(--primary); }
-.tag-high { background: var(--danger-bg); color: var(--danger); }
-.tag-medium { background: #FFFBEB; color: var(--warning); }
-.tag-low { background: var(--info-bg); color: var(--success); }
-.tag-solved { background: var(--info-bg); color: var(--success); border: 1px solid rgba(16,185,129,0.2); }
-.tag-open { background: var(--tag-bg); color: var(--text-secondary); }
+.tag-web { background: #E6F4F1; color: #0D9488; }
+.tag-urgency { background: #FEF2F2; color: #EF4444; }
+.tag-status { background: #F0FDF4; color: #16A34A; }
+.skill-badge { background: #F3F4F6; color: #4B5563; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; margin-right: 5px; }
 
-/* ===== AVATAR ===== */
-.avatar {
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; flex-shrink: 0;
-}
-.avatar-sm { width: 38px; height: 38px; font-size: 0.875rem; }
-.avatar-md { width: 48px; height: 48px; font-size: 1rem; }
-.avatar-lg { width: 64px; height: 64px; font-size: 1.25rem; }
-.avatar-amber { background: linear-gradient(135deg, #FCD34D, #F97316); color: #fff; }
-.avatar-teal { background: linear-gradient(135deg, #2DD4BF, #0D9488); color: #fff; }
-.avatar-violet { background: linear-gradient(135deg, #A78BFA, #7C3AED); color: #fff; }
-.avatar-rose { background: linear-gradient(135deg, #FB7185, #E11D48); color: #fff; }
-
-/* ===== INPUTS ===== */
-.input-custom {
-  width: 100%; padding: 12px 16px;
-  border-radius: 12px; border: 1.5px solid var(--border);
-  background: #fff; color: var(--text-primary);
-  font-size: 0.9375rem; font-family: 'DM Sans', sans-serif;
-  outline: none; transition: all 0.2s ease;
-  appearance: none;
-}
-.input-custom:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(13,148,136,0.1); }
-.input-custom::placeholder { color: var(--text-muted); }
-.textarea-custom { min-height: 120px; resize: vertical; }
-
-/* ===== PROGRESS BAR ===== */
-.progress-custom { width: 100%; height: 8px; background: var(--border); border-radius: 9999px; overflow: hidden; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, #FCD34D, #0D9488, #0F766E); border-radius: 9999px; }
-
-/* ===== FORM LABEL ===== */
-.form-label-custom {
-  font-size: 0.875rem; font-weight: 600;
-  color: var(--text-primary); margin-bottom: 6px; display: block;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+.btn-open {
+  background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 50px;
+  padding: 10px 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; color: black;
 }
 
-/* ===== STATS CARD ===== */
-.stat-number {
-  font-size: 2rem; font-weight: 800;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: var(--text-primary); line-height: 1;
-}
-.stat-label { font-size: 0.875rem; color: var(--text-secondary); margin-top: 4px; }
-
-/* ===== NOTIFICATIONS ===== */
-.notif-item {
-  padding: 16px 0; border-bottom: 1px solid var(--border);
-  display: flex; align-items: flex-start; gap: 14px;
-}
-.notif-item:last-child { border-bottom: none; }
-.notif-dot {
-  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px;
-}
-.notif-dot-unread { background: var(--primary); }
-.notif-dot-read { background: var(--border); }
-.badge-unread { background: var(--primary-light); color: var(--primary); padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
-.badge-read { background: var(--tag-bg); color: var(--text-muted); padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
-
-/* ===== AI PANEL ===== */
-.ai-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 0; border-bottom: 1px solid var(--border);
-  font-size: 0.875rem;
-}
-.ai-row:last-child { border-bottom: none; }
-.ai-label { color: var(--text-secondary); font-weight: 500; }
-.ai-value { color: var(--text-primary); font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; }
-.ai-muted { color: var(--text-muted); font-style: italic; }
-
-/* ===== RANKING ===== */
-.rank-item {
-  display: flex; align-items: center; gap: 14px;
-  padding: 14px 0; border-bottom: 1px solid var(--border);
-}
-.rank-item:last-child { border-bottom: none; }
-.rank-num { font-size: 1.125rem; font-weight: 800; color: var(--text-muted); width: 28px; text-align: center; flex-shrink: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-.rank-num.top3 { color: var(--warning); }
-.trust-badge { background: var(--primary); color: #fff; padding: 3px 12px; border-radius: 9999px; font-size: 0.8125rem; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; }
-
-/* ===== MESSAGES ===== */
-.msg-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 14px 0; border-bottom: 1px solid var(--border); cursor: pointer;
-  transition: all 0.2s;
-}
-.msg-item:hover { background: var(--bg); margin: 0 -12px; padding: 14px 12px; border-radius: 12px; }
-.msg-item:last-child { border-bottom: none; }
-.msg-time { background: var(--primary); color: #fff; padding: 2px 8px; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-
-/* ===== HERO LARGE ===== */
-.hero-large { padding: 120px 0 64px; }
-.hero-display {
-  font-size: 3.5rem; font-weight: 800; line-height: 1.08;
-  letter-spacing: -0.025em; color: #fff;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-.hero-sub { font-size: 1.125rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
-
-/* ===== FEATURE LIST IN HERO ===== */
-.feature-check { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.8); font-size: 0.9375rem; margin-bottom: 12px; }
-.feature-check i { color: var(--primary); font-size: 0.875rem; }
-
-/* ===== SECTION ===== */
-.section { padding: 72px 0; }
-.section-light { background: var(--bg-light); }
-
-/* ===== REQUEST CARD ===== */
-.request-card { border-left: 3px solid var(--primary); }
-
-/* ===== LOGIN PAGE ===== */
-.login-left {
-  background: var(--dark);
-  min-height: 100vh;
-  padding: 64px 48px;
-  display: flex; flex-direction: column; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.login-left::before {
-  content: ''; position: absolute; top: -100px; right: -50px;
-  width: 350px; height: 350px;
-  background: radial-gradient(circle, rgba(13,148,136,0.12) 0%, transparent 70%);
-  border-radius: 50%;
-}
-
-.live-signal {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 0.8125rem; color: var(--text-secondary);
-  font-weight: 500;
-}
-.live-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{ opacity:1; transform: scale(1); } 50%{ opacity:0.6; transform: scale(1.3); } }
-
-/* ===== HELPER ITEM ===== */
-.helper-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 0; border-bottom: 1px solid var(--border);
-}
-.helper-item:last-child { border-bottom: none; }
-
-/* ===== BADGE PILL ===== */
-.badge-pill { background: var(--tag-bg); color: var(--tag-text); padding: 4px 12px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; }
-
-/* ===== FOOTER ===== */
-.footer { background: var(--dark-deep); color: rgba(255,255,255,0.5); padding: 28px 0; text-align: center; font-size: 0.875rem; }
-
-/* ===== DIVIDER ===== */
-.divider { height: 1px; background: var(--border); margin: 20px 0; }
-
-/* ===== AI CENTER STATS ===== */
-.ai-stat-card { text-align: center; }
-.ai-stat-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); margin-bottom: 6px; font-family: 'Plus Jakarta Sans', sans-serif; }
-.ai-stat-value { font-size: 1.25rem; font-weight: 800; color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif; }
-.ai-stat-sub { font-size: 0.8125rem; color: var(--text-muted); margin-top: 2px; }
-
-/* ===== PROFILE SKILLS ===== */
-.skill-pill { background: var(--primary-light); color: var(--primary); padding: 5px 14px; border-radius: 9999px; font-size: 0.8125rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; }
-
-/* ===== MISC ===== */
-.text-primary-custom { color: var(--primary); }
-.text-muted-custom { color: var(--text-muted); }
-.text-secondary-custom { color: var(--text-secondary); }
-.text-danger-custom { color: var(--danger); }
-.text-success-custom { color: var(--success); }
-.text-warning-custom { color: var(--warning); }
-
-.section-title { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; font-family: 'Plus Jakarta Sans', sans-serif; }
-.card-title-custom { font-size: 1.125rem; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-primary); }
-.body-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; }
-.small-text { font-size: 0.875rem; color: var(--text-muted); }
-
-.container-max { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-/* Spacer for fixed nav */
-.nav-spacer { height: 64px; }
-
-/* Filter sidebar */
-.filter-section-title { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 10px; font-family: 'Plus Jakarta Sans', sans-serif; }
-
-/* Toast notification */
-.toast-custom {
-  position: fixed; bottom: 24px; right: 24px; z-index: 99999;
-  background: var(--dark); color: #fff;
-  padding: 14px 20px; border-radius: 12px;
-  font-size: 0.875rem; font-weight: 500;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  display: flex; align-items: center; gap: 10px;
-  animation: slideIn 0.3s ease;
-}
-@keyframes slideIn { from{ transform: translateX(100%); opacity:0; } to{ transform: translateX(0); opacity:1; } }
-
-/* Dark hero card */
-.dark-feature-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 16px; padding: 24px;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .hero-display { font-size: 2.25rem; }
-  .hero-banner { padding: 36px 24px; }
-  .section-title { font-size: 1.75rem; }
-  .login-left { display: none !important; }
+/* Responsive */
+@media (max-width: 991px) {
+  .hero-title { font-size: 3rem; }
+  .eco-card { margin-top: 40px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ================================================== -->
 <!-- PAGE: HOME -->
-<!-- ================================================== -->
 <div id="page-home" class="page">
-
-  <!-- NAV -->
-  <nav class="navbar-helphub">
-    <div class="container-max w-100 d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center gap-2">
-        <a href="#page-home" class="nav-logo">H</a>
-        <a href="#page-home" class="nav-brand">HelpHub AI</a>
+  
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <div class="d-flex align-items-center">
+        <div class="nav-logo-box me-2">H</div>
+        <span class="fw-bold">HelpHub AI</span>
       </div>
-      <div class="d-flex align-items-center gap-1 d-none d-md-flex">
+      <div class="mx-auto d-none d-lg-flex">
         <a href="#page-home" class="nav-link-custom active">Home</a>
         <a href="#page-explore" class="nav-link-custom">Explore</a>
         <a href="#page-leaderboard" class="nav-link-custom">Leaderboard</a>
         <a href="#page-ai" class="nav-link-custom">AI Center</a>
       </div>
       <div class="d-flex align-items-center gap-3">
-        <div class="live-signal d-none d-lg-flex">
-          <span class="live-dot"></span>
-          Live community signals
-        </div>
-        <a href="#page-login" class="btn-nav">Join the platform</a>
+        <span class="d-none d-md-block text-muted small">Live community signals</span>
+        <a href="#page-login" class="btn-join">Join the platform</a>
       </div>
     </div>
   </nav>
-  <div class="nav-spacer"></div>
 
-  <!-- HERO -->
-  <div class="container-max py-4">
-    <div class="hero-banner">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-7">
-          <div class="overline overline-white mb-3">
-            <i class="fa-solid fa-bolt me-1"></i> SMIT GRAND CODING NIGHT 2026
+  <!-- HERO SECTION -->
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <!-- Left Content -->
+      <div class="col-lg-7">
+        <div class="section-tag" style="color: #6B7280;">SMIT Grand Coding Night 2026</div>
+        <h1 class="hero-title">Find help faster.<br>Become help that matters.</h1>
+        <p class="hero-desc">HelpHub AI is a community-powered support network for students, mentors, creators, and builders. Ask for help, offer help, track impact, and let AI surface smarter matches across the platform.</p>
+        
+        <div class="d-flex gap-3 mt-4">
+          <a href="#page-explore" class="btn-join py-3 px-4">Open product demo</a>
+          <a href="#page-create" class="btn btn-outline-dark rounded-pill py-3 px-4 fw-bold">Post a request</a>
+        </div>
+
+        <div class="row stat-card-row g-3">
+          <div class="col-md-4">
+            <div class="stat-card">
+              <span class="stat-label">Members</span>
+              <div class="stat-value">384+</div>
+              <p class="stat-text">Students, mentors, and helpers in the loop.</p>
+            </div>
           </div>
-          <h1 class="hero-display mb-4">Find help faster.<br>Become help<br>that matters.</h1>
-          <p class="hero-sub mb-5" style="max-width:480px;">
-            HelpHub AI connects students, mentors, and builders through intelligent request matching, community trust signals, and real-time collaboration tools.
-          </p>
-          <div class="d-flex flex-wrap gap-3">
-            <a href="#page-explore" class="btn-primary-custom">
-              <i class="fa-solid fa-play"></i> Open product demo
-            </a>
-            <a href="#page-create" class="btn-secondary-custom">
-              <i class="fa-solid fa-plus"></i> Post a request
-            </a>
+          <div class="col-md-4">
+            <div class="stat-card">
+              <span class="stat-label">Requests</span>
+              <div class="stat-value">72+</div>
+              <p class="stat-text">Support posts shared across learning journeys.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-card">
+              <span class="stat-label">Solved</span>
+              <div class="stat-value">69+</div>
+              <p class="stat-text">Problems resolved through fast community action.</p>
+            </div>
           </div>
         </div>
-        <div class="col-lg-5 d-none d-lg-block">
-          <div class="dark-feature-card">
-            <div class="overline mb-2" style="font-size:0.7rem;">LIVE PRODUCT FEEL</div>
-            <p class="fw-700 mb-3" style="color:#fff;font-size:1rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">More than a form.<br>More like an ecosystem.</p>
-            <div class="feature-check"><i class="fa-solid fa-check-circle"></i> AI request intelligence & auto-tagging</div>
-            <div class="feature-check"><i class="fa-solid fa-check-circle"></i> Community trust graph & rankings</div>
-            <div class="feature-check"><i class="fa-solid fa-check-circle"></i> Real-time notifications & DMs</div>
-            <div class="divider" style="border-color:rgba(255,255,255,0.1);"></div>
-            <div class="d-flex align-items-center gap-3 mt-3">
-              <div class="avatar avatar-sm avatar-teal">AK</div>
-              <div class="avatar avatar-sm avatar-amber">HA</div>
-              <div class="avatar avatar-sm avatar-violet">SN</div>
-              <span style="color:rgba(255,255,255,0.5);font-size:0.875rem;">+381 members</span>
-              <span class="ms-auto tag tag-low">100% Trust Score</span>
+      </div>
+
+      <!-- Right Content (Dark Card) -->
+      <div class="col-lg-5">
+        <div class="eco-card">
+          <div class="eco-circle"></div>
+          <div class="section-tag mb-3" style="color: #2DD4BF;">Live Product Feel</div>
+          <h2 class="fw-bold mb-4" style="font-size: 2.2rem; line-height: 1.2;">More than a form.<br>More like an ecosystem.</h2>
+          <p style="color: #94A3B8; font-size: 0.95rem;">A polished multi-page experience inspired by product platforms, with AI summaries, trust scores, and leaderboard momentum.</p>
+          
+          <div class="eco-feature">
+            <h5>AI request intelligence</h5>
+            <p>Auto-categorization, urgency detection, tags, and trend snapshots.</p>
+          </div>
+          <div class="eco-feature">
+            <h5>Community trust graph</h5>
+            <p>Badges, helper rankings, and visible contribution history.</p>
+          </div>
+          <div class="eco-feature">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h5>100%</h5>
+                <p>Top trust score active now.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -479,202 +234,130 @@ h1,h2,h3,h4,h5,h6,.fw-bold,.fw-semibold {
     </div>
   </div>
 
-  <!-- STATS -->
-  <div class="container-max py-4">
-    <div class="row g-3">
+  <!-- CORE FLOW SECTION -->
+  <div class="container py-5 my-5">
+    <div class="d-flex justify-content-between align-items-end mb-5">
+      <div>
+        <span class="section-tag">Core Flow</span>
+        <h2 class="section-title">From struggling alone to solving together</h2>
+      </div>
+      <a href="#page-ai" class="btn btn-light rounded-pill px-4 py-2 border fw-bold shadow-sm">Try onboarding AI</a>
+    </div>
+    
+    <div class="row g-4">
       <div class="col-md-4">
-        <div class="card-custom text-center card-lift">
-          <div class="stat-number">384+</div>
-          <div class="stat-label">Community Members across Pakistan & remote</div>
+        <div class="flow-card h-100">
+          <h4>Ask for help clearly</h4>
+          <p>Create structured requests with category, urgency, AI suggestions, and tags that attract the right people.</p>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card-custom text-center card-lift">
-          <div class="stat-number" style="color:var(--primary);">72+</div>
-          <div class="stat-label">Help requests posted across all categories</div>
+        <div class="flow-card h-100">
+          <h4>Discover the right people</h4>
+          <p>Use the explore feed, helper lists, and messaging to move quickly once a match happens.</p>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card-custom text-center card-lift">
-          <div class="stat-number" style="color:var(--success);">69+</div>
-          <div class="stat-label">Requests successfully solved by the community</div>
+        <div class="flow-card h-100">
+          <h4>Track real contribution</h4>
+          <p>Trust scores, badges, solved requests, and rankings help the community recognize meaningful support.</p>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- CORE FLOW -->
-  <section class="section">
-    <div class="container-max">
-      <div class="d-flex justify-content-between align-items-start mb-5 flex-wrap gap-3">
-        <div>
-          <div class="overline mb-2">CORE FLOW</div>
-          <h2 class="section-title">From struggling alone<br>to solving together</h2>
-        </div>
-        <a href="#page-ai" class="btn-secondary-custom mt-2">
-          <i class="fa-solid fa-robot"></i> Try onboarding AI
-        </a>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card-custom card-lift h-100">
-            <div class="mb-3">
-              <div style="width:48px;height:48px;background:var(--primary-light);border-radius:14px;display:flex;align-items:center;justify-content:center;">
-                <i class="fa-solid fa-pen-to-square" style="color:var(--primary);font-size:1.2rem;"></i>
-              </div>
-            </div>
-            <div class="overline mb-1">STEP 01</div>
-            <h3 class="card-title-custom mb-2">Ask for help clearly</h3>
-            <p class="body-text" style="font-size:0.9375rem;">Describe your challenge and let AI auto-categorize, detect urgency, suggest tags, and rewrite your request for clarity.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-custom card-lift h-100">
-            <div class="mb-3">
-              <div style="width:48px;height:48px;background:var(--primary-light);border-radius:14px;display:flex;align-items:center;justify-content:center;">
-                <i class="fa-solid fa-magnifying-glass" style="color:var(--primary);font-size:1.2rem;"></i>
-              </div>
-            </div>
-            <div class="overline mb-1">STEP 02</div>
-            <h3 class="card-title-custom mb-2">Discover the right people</h3>
-            <p class="body-text" style="font-size:0.9375rem;">Browse a filterable community feed. Filter by category, urgency, skills, and location to find the perfect match for your problem.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-custom card-lift h-100">
-            <div class="mb-3">
-              <div style="width:48px;height:48px;background:var(--primary-light);border-radius:14px;display:flex;align-items:center;justify-content:center;">
-                <i class="fa-solid fa-chart-line" style="color:var(--primary);font-size:1.2rem;"></i>
-              </div>
-            </div>
-            <div class="overline mb-1">STEP 03</div>
-            <h3 class="card-title-custom mb-2">Track real contribution</h3>
-            <p class="body-text" style="font-size:0.9375rem;">Earn trust scores, badges, and leaderboard rankings. Every act of helping is tracked, recognized, and celebrated by the community.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- FEATURED REQUESTS -->
-  <section class="section" style="background:var(--bg-light);">
-    <div class="container-max">
-      <div class="d-flex justify-content-between align-items-start mb-5 flex-wrap gap-3">
-        <div>
-          <div class="overline mb-2">FEATURED REQUESTS</div>
-          <h2 class="section-title">Community problems<br>currently in motion</h2>
-        </div>
-        <a href="#page-explore" class="btn-primary-custom mt-2">
-          View full feed <i class="fa-solid fa-arrow-right"></i>
-        </a>
+  <div class="container py-5">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <div>
+        <span class="section-tag">Featured Requests</span>
+        <h2 class="section-title">Community problems currently in motion</h2>
       </div>
-      <div class="row g-4">
+      <a href="#page-explore" class="btn btn-light rounded-pill px-4 py-2 border fw-bold shadow-sm">View full feed</a>
+    </div>
 
-        <!-- Request 1 -->
-        <div class="col-md-4">
-          <div class="card-custom card-lift request-card h-100 d-flex flex-column">
-            <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="tag tag-category"><i class="fa-solid fa-code fa-xs"></i> Web Dev</span>
-              <span class="tag tag-high"><i class="fa-solid fa-fire fa-xs"></i> High</span>
-              <span class="tag tag-open">Open</span>
+    <div class="row g-4">
+      <!-- Req 1 -->
+      <div class="col-md-4">
+        <div class="req-card h-100 d-flex flex-column">
+          <div class="d-flex gap-2 mb-3">
+            <span class="tag-pill tag-web">Web Development</span>
+            <span class="tag-pill tag-urgency">High</span>
+            <span class="tag-pill tag-status">Open</span>
+          </div>
+          <h5 class="fw-bold mb-3">Need help making my portfolio responsive before demo day</h5>
+          <p class="text-muted small flex-grow-1">My HTML/CSS portfolio breaks on tablets and I need layout guidance before tomorrow evening.</p>
+          <div class="mt-3 mb-4">
+            <span class="skill-badge">HTML/CSS</span>
+            <span class="skill-badge">Responsive</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-auto">
+            <div>
+              <div class="fw-bold small">Sara Noor</div>
+              <div class="text-muted" style="font-size: 0.75rem;">Karachi • 1 helper interested</div>
             </div>
-            <h4 class="card-title-custom mb-2">Need review on JavaScript quiz app before submission</h4>
-            <p class="body-text mb-3" style="font-size:0.875rem;flex:1;">My quiz app has a scoring bug and the timer resets unexpectedly. Submitting tomorrow morning and really need a second set of eyes on the logic.</p>
-            <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="tag tag-category" style="font-size:0.75rem;">JavaScript</span>
-              <span class="tag tag-category" style="font-size:0.75rem;">Debugging</span>
-              <span class="tag tag-category" style="font-size:0.75rem;">Review</span>
-            </div>
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center gap-2">
-                <div class="avatar avatar-sm avatar-teal">AK</div>
-                <div>
-                  <div style="font-size:0.875rem;font-weight:600;">Ayesha Khan</div>
-                  <div class="small-text"><i class="fa-solid fa-location-dot fa-xs me-1"></i>Karachi · 3 helpers</div>
-                </div>
-              </div>
-              <a href="#page-detail" class="btn-ghost-custom" style="font-size:0.8125rem;">Open <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
+            <a href="#page-detail" class="btn-open">Open details</a>
           </div>
         </div>
+      </div>
 
-        <!-- Request 2 -->
-        <div class="col-md-4">
-          <div class="card-custom card-lift request-card h-100 d-flex flex-column">
-            <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="tag tag-category"><i class="fa-solid fa-palette fa-xs"></i> Design</span>
-              <span class="tag tag-medium"><i class="fa-solid fa-triangle-exclamation fa-xs"></i> Medium</span>
-              <span class="tag tag-solved"><i class="fa-solid fa-check fa-xs"></i> Solved</span>
+      <!-- Req 2 -->
+      <div class="col-md-4">
+        <div class="req-card h-100 d-flex flex-column">
+          <div class="d-flex gap-2 mb-3">
+            <span class="tag-pill" style="background:#F0F9FF; color:#0369A1;">Design</span>
+            <span class="tag-pill" style="background:#FFFBEB; color:#B45309;">Medium</span>
+            <span class="tag-pill tag-status">Open</span>
+          </div>
+          <h5 class="fw-bold mb-3">Looking for Figma feedback on a volunteer event poster</h5>
+          <p class="text-muted small flex-grow-1">I have a draft poster for a campus community event and want sharper hierarchy and CTA copy.</p>
+          <div class="mt-3 mb-4">
+            <span class="skill-badge">Figma</span>
+            <span class="skill-badge">Poster</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-auto">
+            <div>
+              <div class="fw-bold small">Ayesha Khan</div>
+              <div class="text-muted" style="font-size: 0.75rem;">Lahore • 1 helper interested</div>
             </div>
-            <h4 class="card-title-custom mb-2">Figma portfolio critique — looking for UX feedback</h4>
-            <p class="body-text mb-3" style="font-size:0.875rem;flex:1;">I've built a 5-screen mobile app portfolio in Figma and need feedback on the overall UX flow and visual hierarchy before I share it with recruiters.</p>
-            <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="tag tag-category" style="font-size:0.75rem;">Figma</span>
-              <span class="tag tag-category" style="font-size:0.75rem;">UI/UX</span>
-              <span class="tag tag-category" style="font-size:0.75rem;">Portfolio</span>
-            </div>
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center gap-2">
-                <div class="avatar avatar-sm avatar-amber">HA</div>
-                <div>
-                  <div style="font-size:0.875rem;font-weight:600;">Hassan Ali</div>
-                  <div class="small-text"><i class="fa-solid fa-location-dot fa-xs me-1"></i>Lahore · 2 helpers</div>
-                </div>
-              </div>
-              <a href="#page-detail" class="btn-ghost-custom" style="font-size:0.8125rem;">Open <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
+            <a href="#page-detail" class="btn-open">Open details</a>
           </div>
         </div>
+      </div>
 
-        <!-- Request 3 -->
-        <div class="col-md-4">
-          <div class="card-custom card-lift request-card h-100 d-flex flex-column">
-            <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="tag tag-category"><i class="fa-solid fa-briefcase fa-xs"></i> Career</span>
-              <span class="tag tag-low"><i class="fa-solid fa-circle-check fa-xs"></i> Low</span>
-              <span class="tag tag-open">Open</span>
+      <!-- Req 3 -->
+      <div class="col-md-4">
+        <div class="req-card h-100 d-flex flex-column" style="background: #FAFAFA;">
+          <div class="d-flex gap-2 mb-3">
+            <span class="tag-pill tag-web">Web Development</span>
+            <span class="tag-pill tag-urgency">High</span>
+            <span class="tag-pill tag-status">Solved</span>
+          </div>
+          <h5 class="fw-bold mb-3">JavaScript Timer Reset Bug</h5>
+          <p class="text-muted small flex-grow-1">The quiz timer resets every time a user clicks 'next'. Resolved by Ayesha Khan.</p>
+          <div class="mt-3 mb-4">
+            <span class="skill-badge">JS</span>
+            <span class="skill-badge">Logic</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-auto">
+            <div>
+              <div class="fw-bold small">Hassan Ali</div>
+              <div class="text-muted" style="font-size: 0.75rem;">Karachi • Solved</div>
             </div>
-            <h4 class="card-title-custom mb-2">CV review for first internship application in tech</h4>
-            <p class="body-text mb-3" style="font-size:0.875rem;flex:1;">Applying for my first tech internship and want someone experienced to review my CV for structure, keyword optimization, and overall impression.</p>
-            <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="tag tag-category" style="font-size:0.75rem;">Career</span>
-              <span class="tag tag-category" style="font-size:0.75rem;">CV Review</span>
-              <span class="tag tag-category" style="font-size:0.75rem;">Internship</span>
-            </div>
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center gap-2">
-                <div class="avatar avatar-sm avatar-violet">SN</div>
-                <div>
-                  <div style="font-size:0.875rem;font-weight:600;">Sara Noor</div>
-                  <div class="small-text"><i class="fa-solid fa-location-dot fa-xs me-1"></i>Remote · 1 helper</div>
-                </div>
-              </div>
-              <a href="#page-detail" class="btn-ghost-custom" style="font-size:0.8125rem;">Open <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
+            <a href="#page-detail" class="btn-open">View Solution</a>
           </div>
         </div>
-
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container-max">
-      <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
-        <div class="nav-logo" style="width:28px;height:28px;font-size:0.75rem;">H</div>
-        <span style="color:rgba(255,255,255,0.7);font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;">HelpHub AI</span>
-      </div>
-      HelpHub AI is built as a premium-feel, multi-page community support product for SMIT Grand Coding Night 2026. Built with pure HTML, CSS &amp; Bootstrap.
-    </div>
+  <footer class="text-center py-5 mt-5 text-muted small border-top">
   </footer>
 
-</div><!-- /page-home -->
-
-
-<!-- ================================================== -->
+</div>
+</body>
+</html>
 <!-- PAGE: LOGIN -->
-<!-- ================================================== -->
 <div id="page-login" class="page">
   <div class="row g-0" style="min-height:100vh;">
 
@@ -755,9 +438,7 @@ h1,h2,h3,h4,h5,h6,.fw-bold,.fw-semibold {
 </div><!-- /page-login -->
 
 
-<!-- ================================================== -->
 <!-- PAGE: EXPLORE / FEED -->
-<!-- ================================================== -->
 <div id="page-explore" class="page">
 
   <nav class="navbar-helphub">
@@ -987,9 +668,7 @@ h1,h2,h3,h4,h5,h6,.fw-bold,.fw-semibold {
 </div><!-- /page-explore -->
 
 
-<!-- ================================================== -->
 <!-- PAGE: CREATE REQUEST -->
-<!-- ================================================== -->
 <div id="page-create" class="page">
 
   <nav class="navbar-helphub">
@@ -1114,9 +793,7 @@ h1,h2,h3,h4,h5,h6,.fw-bold,.fw-semibold {
 </div><!-- /page-create -->
 
 
-<!-- ================================================== -->
 <!-- PAGE: AI CENTER -->
-<!-- ================================================== -->
 <div id="page-ai" class="page">
 
   <nav class="navbar-helphub">
@@ -1276,4 +953,330 @@ h1,h2,h3,h4,h5,h6,.fw-bold,.fw-semibold {
                 <div style="font-size:0.875rem;font-weight:600;">Hassan Ali</div>
                 <div class="small-text">React · Node.js · Git</div>
               </div>
-              <span class="trust-badge">94%</s
+              <span class="trust-badge">94%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer mt-5">
+    <div class="container-max">HelpHub AI — Community Support Network · SMIT Grand Coding Night 2026</div>
+  </footer>
+</div><!-- /page-ai -->
+
+
+<!-- PAGE: REQUEST DETAIL -->
+<div id="page-detail" class="page">
+
+  <nav class="navbar-helphub">
+    <div class="container-max w-100 d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-2">
+        <a href="#page-home" class="nav-logo">H</a>
+        <a href="#page-home" class="nav-brand">HelpHub AI</a>
+      </div>
+      <div class="d-flex align-items-center gap-1 d-none d-md-flex">
+        <a href="#page-explore" class="nav-link-custom">Dashboard</a>
+        <a href="#page-explore" class="nav-link-custom">Explore</a>
+        <a href="#page-messages" class="nav-link-custom">Messages</a>
+      </div>
+      <a href="#page-profile" class="d-flex align-items-center gap-2 text-decoration-none">
+        <div class="avatar avatar-sm avatar-teal">AK</div>
+      </a>
+    </div>
+  </nav>
+  <div class="nav-spacer"></div>
+
+  <div class="container-max py-4">
+    <!-- Detail Hero -->
+    <div class="hero-banner mb-4">
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <span class="tag tag-category">Web Development</span>
+        <span class="tag tag-high"><i class="fa-solid fa-fire fa-xs"></i> High Urgency</span>
+        <span class="tag tag-open">Open</span>
+      </div>
+      <h1 style="font-size:2rem;font-weight:800;color:#fff;letter-spacing:-0.02em;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:12px;">Need review on my JavaScript quiz app<br>before final submission</h1>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.7;max-width:700px;">My quiz app has a scoring bug and the timer resets unexpectedly on question skip. Submitting tomorrow morning — really need someone experienced with vanilla JS to review the logic and help debug.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Left -->
+      <div class="col-lg-7">
+
+        <div class="card-custom mb-4">
+          <div class="overline mb-1"><i class="fa-solid fa-robot me-1"></i> AI SUMMARY</div>
+          <h3 class="card-title-custom mb-3">Intelligent request analysis</h3>
+          <div style="background:var(--bg);border-radius:12px;padding:16px;margin-bottom:16px;">
+            <p style="font-size:0.9375rem;color:var(--text-secondary);line-height:1.7;margin:0;">
+              This is a <strong style="color:var(--text-primary);">high-urgency debugging request</strong> requiring JavaScript expertise. The issue involves a scoring calculation bug and a timer reset problem triggered on question-skip events. Estimated resolution time: <strong style="color:var(--text-primary);">1–2 hours</strong> with the right helper. The requester has a 24-hour window and is motivated.
+            </p>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag tag-category">JavaScript</span>
+            <span class="tag tag-category">Debugging</span>
+            <span class="tag tag-category">Timer Logic</span>
+            <span class="tag tag-category">DOM Events</span>
+            <span class="tag tag-category">Code Review</span>
+          </div>
+        </div>
+
+        <div class="card-custom">
+          <h3 class="card-title-custom mb-3">Take action</h3>
+          <p class="body-text mb-4" style="font-size:0.9375rem;">This request is open and actively seeking help. You can offer your expertise or mark it as solved if you've already resolved it.</p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="#page-messages" class="btn-primary-custom">
+              <i class="fa-solid fa-hand-holding-heart"></i> I can help
+            </a>
+            <button class="btn-secondary-custom">
+              <i class="fa-solid fa-check-circle"></i> Mark as solved
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="col-lg-5">
+
+        <div class="card-custom mb-4">
+          <div class="overline mb-1">REQUESTER</div>
+          <h3 class="card-title-custom mb-3">About the person asking</h3>
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="avatar avatar-md avatar-teal">AK</div>
+            <div>
+              <div style="font-weight:700;font-size:1rem;font-family:'Plus Jakarta Sans',sans-serif;">Ayesha Khan</div>
+              <div class="small-text"><i class="fa-solid fa-location-dot fa-xs me-1"></i> Karachi, Pakistan</div>
+              <div class="small-text"><i class="fa-solid fa-briefcase fa-xs me-1"></i> Student · SMIT</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="d-flex gap-4">
+            <div class="text-center">
+              <div style="font-size:1.25rem;font-weight:800;color:var(--primary);font-family:'Plus Jakarta Sans',sans-serif;">100%</div>
+              <div class="small-text">Trust Score</div>
+            </div>
+            <div class="text-center">
+              <div style="font-size:1.25rem;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;">35</div>
+              <div class="small-text">Contributions</div>
+            </div>
+            <div class="text-center">
+              <div style="font-size:1.25rem;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;">12</div>
+              <div class="small-text">Requests helped</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-custom">
+          <div class="overline mb-1">HELPERS</div>
+          <h3 class="card-title-custom mb-3">People ready to support</h3>
+
+          <div class="helper-item">
+            <div class="avatar avatar-sm avatar-amber">HA</div>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">Hassan Ali</div>
+              <div class="small-text">React · Node.js · JavaScript</div>
+            </div>
+            <span class="trust-badge">94%</span>
+          </div>
+
+          <div class="helper-item">
+            <div class="avatar avatar-sm avatar-violet">SN</div>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">Sara Noor</div>
+              <div class="small-text">HTML/CSS · JavaScript · Review</div>
+            </div>
+            <span class="trust-badge">88%</span>
+          </div>
+
+          <div class="helper-item">
+            <div class="avatar avatar-sm avatar-rose">MR</div>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">Muhammad Raza</div>
+              <div class="small-text">Debugging · Vanilla JS</div>
+            </div>
+            <span class="trust-badge">79%</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer mt-5">
+    <div class="container-max">HelpHub AI — Community Support Network · SMIT Grand Coding Night 2026</div>
+  </footer>
+</div><!-- /page-detail -->
+
+
+<!-- PAGE: NOTIFICATIONS -->
+<div id="page-notifications" class="page">
+
+  <nav class="navbar-helphub">
+    <div class="container-max w-100 d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-2">
+        <a href="#page-home" class="nav-logo">H</a>
+        <a href="#page-home" class="nav-brand">HelpHub AI</a>
+      </div>
+      <div class="d-flex align-items-center gap-1 d-none d-md-flex">
+        <a href="#page-explore" class="nav-link-custom">Dashboard</a>
+        <a href="#page-explore" class="nav-link-custom">Explore</a>
+        <a href="#page-notifications" class="nav-link-custom active">Notifications <span style="background:var(--danger);color:#fff;font-size:0.6rem;padding:1px 6px;border-radius:9999px;font-weight:700;vertical-align:middle;">3</span></a>
+      </div>
+      <a href="#page-profile" class="d-flex align-items-center gap-2 text-decoration-none">
+        <div class="avatar avatar-sm avatar-teal">AK</div>
+      </a>
+    </div>
+  </nav>
+  <div class="nav-spacer"></div>
+
+  <div class="container-max py-4">
+    <div class="hero-banner mb-4">
+      <div class="overline overline-white mb-2">NOTIFICATIONS</div>
+      <h1 style="font-size:2.25rem;font-weight:800;color:#fff;letter-spacing:-0.02em;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:10px;">Stay updated on requests,<br>helpers, and trust signals.</h1>
+      <p class="hero-sub" style="font-size:1rem;">Real-time updates from your community activity, AI insights, and reputation changes.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card-custom">
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <div>
+              <div class="overline mb-1">LIVE UPDATES</div>
+              <h3 class="card-title-custom">Notification feed</h3>
+            </div>
+            <button class="btn-ghost-custom" style="font-size:0.8125rem;">Mark all as read</button>
+          </div>
+
+          <div class="notif-item">
+            <span class="notif-dot notif-dot-unread"></span>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">Hassan Ali offered to help on your JS quiz request</div>
+              <div class="small-text mt-1"><span style="color:var(--primary);font-weight:600;">Match</span> · 12 minutes ago</div>
+            </div>
+            <span class="badge-unread">Unread</span>
+          </div>
+
+          <div class="notif-item">
+            <span class="notif-dot notif-dot-unread"></span>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">Your trust score increased to 100% — Top Mentor badge earned!</div>
+              <div class="small-text mt-1"><span style="color:var(--warning);font-weight:600;">Reputation</span> · 1 hour ago</div>
+            </div>
+            <span class="badge-unread">Unread</span>
+          </div>
+
+          <div class="notif-item">
+            <span class="notif-dot notif-dot-unread"></span>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">AI flagged 2 high-urgency requests matching your skills</div>
+              <div class="small-text mt-1"><span style="color:var(--primary);font-weight:600;">Insight</span> · 2 hours ago</div>
+            </div>
+            <span class="badge-unread">Unread</span>
+          </div>
+
+          <div class="notif-item">
+            <span class="notif-dot notif-dot-read"></span>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:600;">Sara Noor marked your Figma feedback as resolved</div>
+              <div class="small-text mt-1"><span style="color:var(--success);font-weight:600;">Status</span> · 4 hours ago</div>
+            </div>
+            <span class="badge-read">Read</span>
+          </div>
+
+          <div class="notif-item">
+            <span class="notif-dot notif-dot-read"></span>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:600;">New request in Web Development — matches your skill profile</div>
+              <div class="small-text mt-1"><span style="color:var(--text-secondary);font-weight:600;">Request</span> · 5 hours ago</div>
+            </div>
+            <span class="badge-read">Read</span>
+          </div>
+
+          <div class="notif-item">
+            <span class="notif-dot notif-dot-read"></span>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:600;">You received a new direct message from Hassan Ali</div>
+              <div class="small-text mt-1"><span style="color:var(--text-secondary);font-weight:600;">Message</span> · Yesterday</div>
+            </div>
+            <span class="badge-read">Read</span>
+          </div>
+
+          <div class="notif-item">
+            <span class="notif-dot notif-dot-read"></span>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:600;">Community milestone: 69 requests solved this month</div>
+              <div class="small-text mt-1"><span style="color:var(--primary);font-weight:600;">Insight</span> · 2 days ago</div>
+            </div>
+            <span class="badge-read">Read</span>
+          </div>
+
+          <div class="notif-item">
+            <span class="notif-dot notif-dot-read"></span>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:600;">Fast Responder badge awarded — responded in under 1 hour</div>
+              <div class="small-text mt-1"><span style="color:var(--warning);font-weight:600;">Reputation</span> · 3 days ago</div>
+            </div>
+            <span class="badge-read">Read</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer mt-5">
+    <div class="container-max">HelpHub AI — Community Support Network · SMIT Grand Coding Night 2026</div>
+  </footer>
+</div><!-- /page-notifications -->
+
+
+<!-- PAGE: MESSAGES -->
+<div id="page-messages" class="page">
+
+  <nav class="navbar-helphub">
+    <div class="container-max w-100 d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-2">
+        <a href="#page-home" class="nav-logo">H</a>
+        <a href="#page-home" class="nav-brand">HelpHub AI</a>
+      </div>
+      <div class="d-flex align-items-center gap-1 d-none d-md-flex">
+        <a href="#page-explore" class="nav-link-custom">Dashboard</a>
+        <a href="#page-explore" class="nav-link-custom">Explore</a>
+        <a href="#page-messages" class="nav-link-custom active">Messages</a>
+      </div>
+      <a href="#page-profile" class="d-flex align-items-center gap-2 text-decoration-none">
+        <div class="avatar avatar-sm avatar-teal">AK</div>
+      </a>
+    </div>
+  </nav>
+  <div class="nav-spacer"></div>
+
+  <div class="container-max py-4">
+    <div class="hero-banner mb-4">
+      <div class="overline overline-white mb-2">INTERACTION / MESSAGING</div>
+      <h1 style="font-size:2.25rem;font-weight:800;color:#fff;letter-spacing:-0.02em;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:10px;">Keep support moving through<br>direct communication.</h1>
+      <p class="hero-sub" style="font-size:1rem;">Direct messages between helpers and requesters. Keep the conversation focused and actionable.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Conversation List -->
+      <div class="col-lg-7">
+        <div class="card-custom">
+          <div class="overline mb-1">CONVERSATION STREAM</div>
+          <h3 class="card-title-custom mb-4">Recent messages</h3>
+
+          <div class="msg-item">
+            <div class="avatar avatar-sm avatar-amber">HA</div>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">Hassan Ali</div>
+              <div style="font-size:0.875rem;color:var(--text-secondary);margin-top:2px;">Hey! I looked at your quiz app code and found the scoring issue. It's in the event listener...</div>
+              <div class="small-text mt-1">Re: JavaScript quiz app review</div>
+            </div>
+            <span class="msg-time">2m</span>
+          </div>
+
+          <div class="msg-item">
+            <div class="avatar avatar-sm avatar-violet">SN</div>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">Sara Noor</div>
+              <div style="font-size:0.875
